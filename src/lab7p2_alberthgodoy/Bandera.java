@@ -1,29 +1,27 @@
 
 package lab7p2_alberthgodoy;
 
-import java.awt.Color;
-
 /**
  *
  * @author godoy
  */
 public class Bandera {
-    private Color color;
+    private String color;
     private String direccion;
 
     public Bandera() {
     }
 
-    public Bandera(Color color, String direccion) {
+    public Bandera(String color, String direccion) {
         this.color = color;
         this.direccion = direccion;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
