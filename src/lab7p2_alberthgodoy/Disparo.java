@@ -9,12 +9,12 @@ import java.awt.Color;
  */
 public class Disparo extends Planta{
     private String nombreProyectil;
-    private Color color;
+    private String color;
 
     public Disparo() {
     }
 
-    public Disparo(String nombreProyectil, Color color, String nombre, int ataque, int vida) {
+    public Disparo(String nombreProyectil, String color, String nombre, int ataque, int vida) {
         super(nombre, ataque, vida);
         this.nombreProyectil = nombreProyectil;
         this.color = color;
@@ -28,11 +28,11 @@ public class Disparo extends Planta{
         this.nombreProyectil = nombreProyectil;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

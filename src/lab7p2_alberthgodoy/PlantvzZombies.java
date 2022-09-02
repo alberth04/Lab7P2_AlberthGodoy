@@ -5,12 +5,14 @@
  */
 package lab7p2_alberthgodoy;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author godoy
  */
 public class PlantvzZombies extends javax.swing.JFrame {
-
+    private ArrayList plantasZombis= new ArrayList();
     /**
      * Creates new form PlantvzZombies
      */
@@ -93,6 +95,7 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jButton_ComidaAgregar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea_PersonasComidas = new javax.swing.JTextArea();
+        jButton_CrearZombi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -256,6 +259,11 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
         jButton_CrearPlanta.setText("Crear Planta");
+        jButton_CrearPlanta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_CrearPlantaMouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton_CrearPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 90, 40));
 
         jTabbedPane1.addTab("Plantas", jPanel2);
@@ -330,6 +338,9 @@ public class PlantvzZombies extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 270, 210));
 
+        jButton_CrearZombi.setText("Crear");
+        jPanel3.add(jButton_CrearZombi, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 80, 30));
+
         jTabbedPane1.addTab("Zombis", jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -390,6 +401,11 @@ public class PlantvzZombies extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton_ExplosivaActionPerformed
 
+    private void jButton_CrearPlantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearPlantaMouseClicked
+        //Crear Planta
+        
+    }//GEN-LAST:event_jButton_CrearPlantaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -430,6 +446,7 @@ public class PlantvzZombies extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup_TipoZombi;
     private javax.swing.JButton jButton_ComidaAgregar;
     private javax.swing.JButton jButton_CrearPlanta;
+    private javax.swing.JButton jButton_CrearZombi;
     private javax.swing.JButton jButton_Testear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
