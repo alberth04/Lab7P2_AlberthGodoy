@@ -45,6 +45,13 @@ public class administrarPlantasvsZombis {
     }
 
     public void cargarArchivo() {
-       
+       String[] archivoTe;
+       lista = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                
+            } catch (Exception e) {
+            }
+        }
     }
 }

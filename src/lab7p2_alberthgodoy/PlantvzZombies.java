@@ -6,13 +6,20 @@
 package lab7p2_alberthgodoy;
 
 import java.util.ArrayList;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
  * @author godoy
  */
 public class PlantvzZombies extends javax.swing.JFrame {
-    private ArrayList plantasZombis= new ArrayList();
+
+    private ArrayList<Planta> plantas = new ArrayList();
+    private ArrayList<Zombi> zombis = new ArrayList();
+
     /**
      * Creates new form PlantvzZombies
      */
@@ -82,8 +89,8 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jSpinner_VidaZombi = new javax.swing.JSpinner();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton_Cargado = new javax.swing.JRadioButton();
+        jRadioButton_Clasico = new javax.swing.JRadioButton();
         jTextField_ColorBanderaClasico = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -231,10 +238,10 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jLabel8.setText("Nombre");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
         jPanel2.add(jSpinner_VidaPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 90, 30));
-        jPanel2.add(jSpinner_AlturaExplosivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 90, 30));
+        jPanel2.add(jSpinner_AlturaExplosivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 90, 30));
 
         jLabel9.setText("Altura");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
 
         jLabel10.setText("Defensa");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
@@ -244,16 +251,16 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         jLabel12.setText("Peso");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
-        jPanel2.add(jSpinner_PesoDisparo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 90, 30));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+        jPanel2.add(jSpinner_PesoDisparo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 90, 30));
 
         jLabel13.setText("Color");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
-        jPanel2.add(jTextField_ColorDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 110, 30));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+        jPanel2.add(jTextField_ColorDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 110, 30));
 
         jLabel14.setText("Dureza");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
-        jPanel2.add(jSpinner_DurezaDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 90, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, -1, -1));
+        jPanel2.add(jSpinner_DurezaDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 90, 30));
 
         jLabel15.setText("Disparo");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
@@ -294,18 +301,18 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jLabel21.setText("Vida");
         jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        buttonGroup_TipoZombi.add(jRadioButton7);
-        jRadioButton7.setText("Cargado");
-        jPanel3.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        buttonGroup_TipoZombi.add(jRadioButton_Cargado);
+        jRadioButton_Cargado.setText("Cargado");
+        jPanel3.add(jRadioButton_Cargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
-        buttonGroup_TipoZombi.add(jRadioButton8);
-        jRadioButton8.setText("Clasico");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup_TipoZombi.add(jRadioButton_Clasico);
+        jRadioButton_Clasico.setText("Clasico");
+        jRadioButton_Clasico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
+                jRadioButton_ClasicoActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel3.add(jRadioButton_Clasico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
         jPanel3.add(jTextField_ColorBanderaClasico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 110, 30));
 
         jLabel22.setText("Color Bandera");
@@ -325,6 +332,11 @@ public class PlantvzZombies extends javax.swing.JFrame {
 
         jButton_ComidaAgregar.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         jButton_ComidaAgregar.setText("+");
+        jButton_ComidaAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_ComidaAgregarMouseClicked(evt);
+            }
+        });
         jButton_ComidaAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ComidaAgregarActionPerformed(evt);
@@ -339,6 +351,11 @@ public class PlantvzZombies extends javax.swing.JFrame {
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 270, 210));
 
         jButton_CrearZombi.setText("Crear");
+        jButton_CrearZombi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_CrearZombiMouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton_CrearZombi, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 80, 30));
 
         jTabbedPane1.addTab("Zombis", jPanel3);
@@ -389,9 +406,9 @@ public class PlantvzZombies extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+    private void jRadioButton_ClasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_ClasicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
+    }//GEN-LAST:event_jRadioButton_ClasicoActionPerformed
 
     private void jButton_ComidaAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ComidaAgregarActionPerformed
         // TODO add your handling code here:
@@ -403,8 +420,93 @@ public class PlantvzZombies extends javax.swing.JFrame {
 
     private void jButton_CrearPlantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearPlantaMouseClicked
         //Crear Planta
-        
+        String nombre = jTextField_NombrePlanta.getText();
+        int ataque = (int) jSpinner_AtaquePlanta.getValue();
+        int vida = (int) jSpinner_VidaPlanta.getValue();
+        String rango;
+        if (jRadioButton_Bajo.isSelected()) {
+            rango = "bajo";
+        } else if (jRadioButton_Medio.isSelected()) {
+            rango = "medio";
+        } else if (jRadioButton_Alto.isSelected()) {
+            rango = "alto";
+        }
+        if (jRadioButton_Explosiva.isSelected()) {
+            int magnitud = (int) jSpinner_MagnitudExplosionExplosiva.getValue();
+            //Agregamos la planta
+            //Agregar una planta de tipo Explosiva
+            plantas.add(new Explosiva(magnitud, nombre, ataque, vida));
+            //La colocamos en el arbol
+            //Obtenemos  el modelo
+            DefaultTreeModel treemodel
+                    = (DefaultTreeModel) jTree_Testear.getModel();
+            //Agregar una planta de tipo Disparo
+        } else if (jRadioButton_Disparo.isSelected()) {
+            String nombreProyectil = jTextField_NombreProyectilDisparo.getText();
+            String Color = jTextField_ColorDefensa.getText();
+            plantas.add(new Disparo(nombreProyectil, Color, nombre, ataque, vida));
+            //Agregar una planta de tipo Defensa
+        } else if (jRadioButton_Defensa.isSelected()) {
+            int altura = (int) jSpinner_AlturaExplosivo.getValue();
+            int peso = (int) jSpinner_PesoDisparo.getValue();
+            int nivelDureza = (int) jSpinner_DurezaDefensa.getValue();
+            plantas.add(new Defensa(altura, nivelDureza, peso, nombre, ataque, vida));
+        }
+        JOptionPane.showMessageDialog(jPanel2, "Planta Agregada", "Planta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton_CrearPlantaMouseClicked
+
+    private void jButton_CrearZombiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CrearZombiMouseClicked
+        //Agregar Zombi
+        String nombre = jTextField_NombreZombi.getText();
+        int ataque = (int) jSpinner_AtaqueZombi.getValue();
+        int vida = (int) jSpinner_VidaZombi.getValue();
+        //Si el zombi es clasico
+        if (jRadioButton_Clasico.isSelected()) {
+            int expy = (int) jSpinner_EdadZombi.getValue();
+            //Atributos bandera
+            String color = jTextField_ColorBanderaClasico.getText();
+            String direccion = jTextField_DirrecionImage.getText();
+            Bandera b = new Bandera(color, direccion);
+            //Agregamos el zombi
+            zombis.add(new Clasico(expy, b, nombre, ataque, vida));
+
+        } else if (jRadioButton_Cargado.isSelected()) {
+            int size = (int) jSpinner_SizeZombi.getValue();
+            int edad = (int) jSpinner_EdadZombi.getValue();
+            int nivelEnojo = (int) jSpinner_EnojoZombi.getValue();
+            //Agregamos el zombi
+            zombis.add(new Cargado(size, edad, nivelEnojo, nombre, ataque, vida));
+            //Si tiene personas comidas
+            if (!jTextArea_PersonasComidas.getText().equalsIgnoreCase("")) {
+                int index = zombis.size() - 1;
+                String personasComidas = jTextArea_PersonasComidas.getText();
+                String[] personasSerapadas = personasComidas.split("");
+                for (int i = 0; i < personasSerapadas.length; i++) {
+                    ((Cargado) zombis.get(index)).getPlantasComidas().add(personasSerapadas[i]);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton_CrearZombiMouseClicked
+
+    private void jButton_ComidaAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ComidaAgregarMouseClicked
+        //Agregar Personas a Comer
+        if (!jTextField_PersonaComida.getText().equals("")) {
+
+            if (jTextArea_PersonasComidas.getText().equals("")) {
+                String persona = jTextField_PersonaComida.getText();
+                jTextArea_PersonasComidas.setText(String.format("%s%n", persona));
+                jTextField_PersonaComida.setText("");
+                
+            }else {
+                String persona = jTextField_PersonaComida.getText();
+                String area = jTextArea_PersonasComidas.getText();
+                jTextArea_PersonasComidas.setText(String.format("%s%s%n",area, persona));
+                jTextField_PersonaComida.setText("");
+            }
+            
+        }
+
+    }//GEN-LAST:event_jButton_ComidaAgregarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -477,10 +579,10 @@ public class PlantvzZombies extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_FondoInicio;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton_Alto;
     private javax.swing.JRadioButton jRadioButton_Bajo;
+    private javax.swing.JRadioButton jRadioButton_Cargado;
+    private javax.swing.JRadioButton jRadioButton_Clasico;
     private javax.swing.JRadioButton jRadioButton_Defensa;
     private javax.swing.JRadioButton jRadioButton_Disparo;
     private javax.swing.JRadioButton jRadioButton_Explosiva;

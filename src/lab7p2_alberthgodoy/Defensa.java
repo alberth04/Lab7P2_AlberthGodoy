@@ -6,25 +6,25 @@ package lab7p2_alberthgodoy;
  * @author godoy
  */
 public class Defensa extends Planta{
-    private double altura;
+    private int altura;
     private int nivelDureza;
-    private double peso;
+    private int peso;
 
     public Defensa() {
     }
 
-    public Defensa(double altura, int nivelDureza, double peso, String nombre, int ataque, int vida) {
+    public Defensa(int altura, int nivelDureza, int peso, String nombre, int ataque, int vida) {
         super(nombre, ataque, vida);
         this.altura = altura;
         this.nivelDureza = nivelDureza;
         this.peso = peso;
     }
 
-    public double getAltura() {
+    public int getAltura() {
         return altura;
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(int altura) {
         this.altura = altura;
     }
 
@@ -36,11 +36,11 @@ public class Defensa extends Planta{
         this.nivelDureza = nivelDureza;
     }
 
-    public double getPeso() {
+    public int getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     }
 

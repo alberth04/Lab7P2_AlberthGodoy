@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * @author godoy
  */
 public class Cargado extends Zombi{
-    private double size;
+    private int size;
     private int edad;
     private int nivelEnojo;
     private ArrayList plantasComidas = new ArrayList();
 
-    public Cargado(double size, int edad, int nivelEnojo, String nombre, int ataque, int vida) {
+    public Cargado(int size, int edad, int nivelEnojo, String nombre, int ataque, int vida) {
         super(nombre, ataque, vida);
         this.size = size;
         this.edad = edad;
@@ -22,11 +22,11 @@ public class Cargado extends Zombi{
     public Cargado() {
     }
 
-    public double getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
