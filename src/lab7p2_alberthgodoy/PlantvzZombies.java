@@ -19,14 +19,28 @@ public class PlantvzZombies extends javax.swing.JFrame {
 
     private ArrayList<Planta> plantas = new ArrayList();
     private ArrayList<Zombi> zombis = new ArrayList();
-    
+
     /**
      * Creates new form PlantvzZombies
      */
     public PlantvzZombies() {
         initComponents();
         //Cargar Planta de archivo
-        
+        //Agregar en arboles
+        DefaultTreeModel treePersonas
+                = (DefaultTreeModel) jTree_Testear.getModel();
+        //Obtener Raiz
+        DefaultMutableTreeNode root
+                = (DefaultMutableTreeNode) treePersonas.getRoot();
+        //Agregar Gerente
+        for (int i = 0; i < root.getChildCount(); i++) {
+            //Agregar Gerentes
+            if (root.getChildAt(i).getChildCount() >= 0) {
+                if (root.getChildAt(i).toString().equalsIgnoreCase("Zombi")) {
+                    System.out.println("Es un zombi");
+                }
+            }
+        }
     }
 
     /**
@@ -498,14 +512,14 @@ public class PlantvzZombies extends javax.swing.JFrame {
                 String persona = jTextField_PersonaComida.getText();
                 jTextArea_PersonasComidas.setText(String.format("%s%n", persona));
                 jTextField_PersonaComida.setText("");
-                
-            }else {
+
+            } else {
                 String persona = jTextField_PersonaComida.getText();
                 String area = jTextArea_PersonasComidas.getText();
-                jTextArea_PersonasComidas.setText(String.format("%s%s%n",area, persona));
+                jTextArea_PersonasComidas.setText(String.format("%s%s%n", area, persona));
                 jTextField_PersonaComida.setText("");
             }
-            
+
         }
 
     }//GEN-LAST:event_jButton_ComidaAgregarMouseClicked
@@ -514,8 +528,7 @@ public class PlantvzZombies extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        administrarPlantasvsZombis ap = new administrarPlantasvsZombis("./Zombies.txt");
-        ap.cargarArchivoZombi();
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
