@@ -45,7 +45,7 @@ public class administrarPlantasvsZombis {
         return "administrarPlantvzZombis{" + "lista=" + lista + ", archivo=" + archivo + '}';
     }
 
-    public void escribirArchivo() throws IOException {
+    public void escribirArchivoPlanta() throws IOException {
 
     }
 
@@ -240,7 +240,201 @@ public class administrarPlantasvsZombis {
                 String archivoTexto = br.readLine();
                 //Agrega cada tipodeZombi
                 String[] tiposZombi = archivoTexto.split("\\|");
-                
+                for (int i = 0; i < tiposZombi.length; i++) {
+                    tiposZombi[i] += "                                                                                                                                                                                                           |";
+                    int indiceInicio = 0;
+                    int indiceFinal = 0;
+                    if (tiposZombi[i].contains("Clasico")) {
+                        indiceInicio = tiposZombi[i].indexOf("Clasico");
+                        indiceFinal = indiceInicio + 7;
+                    } else if (tiposZombi[i].contains("Cargado")) {
+                        indiceInicio = tiposZombi[i].indexOf("Cargado");
+                        indiceFinal = indiceInicio + 7;
+                    }
+                    String zombiType = tiposZombi[i].substring(indiceInicio, indiceFinal);
+
+                    //variables
+                    String nombreZombi = "";
+                    int ataqueZombi = 0;
+                    int vidaZombi = 0;
+                    if (tiposZombi[i].contains("Nombre=")) {
+                        indiceInicio = tiposZombi[i].indexOf("Nombre=") + 7;
+                        if (tiposZombi[i].substring(indiceInicio, indiceInicio + 20).contains(",")) {
+                            indiceFinal = tiposZombi[i].indexOf(",", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("_")) {
+                            indiceFinal = tiposZombi[i].indexOf("_", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                            indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                        }
+                        nombreZombi = tiposZombi[i].substring(indiceInicio, indiceFinal);
+                    }
+                    //Ataque
+                    if (tiposZombi[i].contains("Ataque=")) {
+                        indiceInicio = tiposZombi[i].indexOf("Ataque=") + 7;
+                        if (tiposZombi[i].substring(indiceInicio, indiceInicio + 20).contains(",")) {
+                            indiceFinal = tiposZombi[i].indexOf(",", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("_")) {
+                            indiceFinal = tiposZombi[i].indexOf("_", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                            indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                        }
+                        ataqueZombi = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+
+                    }
+                    //Vida
+                    if (tiposZombi[i].contains("Vida=")) {
+                        indiceInicio = tiposZombi[i].indexOf("Vida=") + 5;
+                        if (tiposZombi[i].substring(indiceInicio, indiceInicio + 20).contains(",")) {
+                            indiceFinal = tiposZombi[i].indexOf(",", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("_")) {
+                            indiceFinal = tiposZombi[i].indexOf("_", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                            indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                        } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                            indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                        }
+                        vidaZombi = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+
+                    }
+
+                    //Si es un clasico
+                    if (zombiType.equalsIgnoreCase("Clasico")) {
+                        int expy = 0;
+                        Bandera b = null;
+                        if (tiposZombi[i].contains("Experiencia=")) {
+                            indiceInicio = tiposZombi[i].indexOf("Experiencia=") + 12;
+                            if (tiposZombi[i].substring(indiceInicio).contains(";")) {
+                                indiceFinal = tiposZombi[i].indexOf(";", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(")")) {
+                                indiceFinal = tiposZombi[i].indexOf(")", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                            }
+                            expy = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+                        }
+                        //obtenerbandera
+                        String color = "";
+                        if (tiposZombi[i].contains("Bandera")) {
+                            if (tiposZombi[i].contains("Color:")) {
+                                indiceInicio = tiposZombi[i].indexOf("Color:") + 6;
+                                if (tiposZombi[i].substring(indiceInicio, indiceInicio + 20).contains(",")) {
+                                    indiceFinal = tiposZombi[i].indexOf(",", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains("_")) {
+                                    indiceFinal = tiposZombi[i].indexOf("_", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                    indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                    indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                                }
+                                color = tiposZombi[i].substring(indiceInicio, indiceFinal);
+
+                            }
+
+                        }
+
+                        String direccion = "";
+                        if (tiposZombi[i].contains("Bandera")) {
+                            if (tiposZombi[i].contains("Direccion:")) {
+                                indiceInicio = tiposZombi[i].indexOf("Direccion:") + 10;
+                                if (tiposZombi[i].substring(indiceInicio).contains("]")) {
+                                    indiceFinal = tiposZombi[i].indexOf("]", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains(",")) {
+                                    indiceFinal = tiposZombi[i].indexOf(",", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains("_")) {
+                                    indiceFinal = tiposZombi[i].indexOf("_", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                    indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                                } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                    indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                                }
+                                direccion = tiposZombi[i].substring(indiceInicio, indiceFinal);
+                             
+                            }
+
+                        }
+                        b = new Bandera(color, direccion);
+                        //Agregar zombi
+                        listaZombis.add(new Clasico(expy, b, nombreZombi, ataqueZombi, vidaZombi));
+                        System.out.println("Zombi Clasico Agregado");
+                    } else {
+                        //size 
+                        int size = 0;
+                        int edad = 0;
+                        int enojo = 0;
+                        if (tiposZombi[i].contains("Tamano=")) {
+                            indiceInicio = tiposZombi[i].indexOf("Tamano=") + 7;
+                            if (tiposZombi[i].substring(indiceInicio).contains(";")) {
+                                indiceFinal = tiposZombi[i].indexOf(";", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(")")) {
+                                indiceFinal = tiposZombi[i].indexOf(")", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                            }
+                            size = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+                            
+                        }
+                        if (tiposZombi[i].contains("Edad=")) {
+                            indiceInicio = tiposZombi[i].indexOf("Edad=") + 5;
+                            if (tiposZombi[i].substring(indiceInicio).contains(";")) {
+                                indiceFinal = tiposZombi[i].indexOf(";", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(")")) {
+                                indiceFinal = tiposZombi[i].indexOf(")", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                            }
+                            edad = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+                            
+                            
+                        }
+                        if (tiposZombi[i].contains("Enojo=")) {
+                            indiceInicio = tiposZombi[i].indexOf("Enojo=") + 6;
+                            if (tiposZombi[i].substring(indiceInicio).contains(";")) {
+                                indiceFinal = tiposZombi[i].indexOf(";", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(")")) {
+                                indiceFinal = tiposZombi[i].indexOf(")", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                            }
+                            enojo = Integer.parseInt(tiposZombi[i].substring(indiceInicio, indiceFinal));
+                          
+                            
+                        }
+                        //Agregar Zombi
+                        listaZombis.add(new Cargado(size, edad, enojo, nombreZombi, ataqueZombi, vidaZombi));
+                        System.out.println("Zombi Cargado Agregado");
+                        //Agregar personas comidas
+                        if (tiposZombi[i].contains("Comidos=")) {
+                            String Comidos = "";
+                             indiceInicio = tiposZombi[i].indexOf("{")+1;
+                            if (tiposZombi[i].substring(indiceInicio).contains("}")) {
+                                indiceFinal = tiposZombi[i].indexOf("}", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("}")) {
+                                indiceFinal = tiposZombi[i].indexOf("}", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains(" ")) {
+                                indiceFinal = tiposZombi[i].indexOf(" ", indiceInicio);
+                            } else if (tiposZombi[i].substring(indiceInicio).contains("|")) {
+                                indiceFinal = tiposZombi[i].indexOf("|", indiceInicio);
+                            }
+                            Comidos += tiposZombi[i].substring(indiceInicio, indiceFinal);
+                            String[] personasComidas = Comidos.split(",");
+                            for (int j = 0; j < personasComidas.length; j++) {
+                                int indexZombi = listaZombis.size()-1;
+                                ((Cargado)listaZombis.get(indexZombi)).getPlantasComidas().add(personasComidas[i]);
+                            }
+                            System.out.println("Personas agregadas");
+                        }
+                        
+                    }
+                }
+
             } catch (Exception e) {
                 System.out.println(e);
             }
